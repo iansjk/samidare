@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 
 YEAR_CHOICES = []
-for year in range(datetime.now().year, 1900, -1):
+for year in range(datetime.now().year, 1970, -1):
     YEAR_CHOICES.append((year, year))
 
 class Song(models.Model):
