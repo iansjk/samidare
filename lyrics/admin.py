@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Song, Artist, Album
+from lyrics.models import Song, Artist, Album
 
 class SongAdmin(admin.ModelAdmin):
     fieldsets = [
