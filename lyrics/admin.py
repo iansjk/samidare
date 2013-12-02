@@ -1,6 +1,24 @@
 from django.contrib import admin
 from .models import Song, Artist, Album
 
-for model in [Song, Artist, Album]:
-    admin.site.register(model)
+class SongAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('General information',
+                {'fields': ['title_en', 'title_orig', 'artist', 'album']}
+        ),
+        ('Lyricsheet',
+                {'fields': ['original', 'romanized', 'translated']}
+        ),
+    ]
+    list_display = (
+        '__unicode__',  # title_orig if it exists, title_en otherwise
+        'artist',
+        'album',
+        'has_romanization',
+        'has_translation',
+    )
 
+
+admin.site.register(Song, SongAdmin)
+admin.site.register(Artist)
+admin.site.register(Album)

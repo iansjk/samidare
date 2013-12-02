@@ -25,6 +25,14 @@ class Song(models.Model):
     def __unicode__(self):
         return self.title_orig if self.title_orig else self.title_en
 
+    def has_romanization(self):
+        return True if self.romanized else False
+    has_romanization.boolean = True
+
+    def has_translation(self):
+        return True if self.translated else False
+    has_translation.boolean = True
+
 
 class Artist(models.Model):
     name = models.CharField(max_length=200,
