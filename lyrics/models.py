@@ -42,5 +42,5 @@ class Album(models.Model):
             verbose_name='Year published')
 
     def __unicode__(self):
-        return '(%d) %s' % (self.year, self.name)
+        return u'({0}) {1}'.format(self.year, self.name)
 
