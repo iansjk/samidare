@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from datetime import datetime
 
 YEAR_CHOICES = []
@@ -14,6 +15,7 @@ class Song(models.Model):
     title_orig = models.CharField(max_length=200, blank=True,
             verbose_name='Title (original)',
             help_text='Optional. The original title, if applicable.')
+    slug = models.SlugField(max_length=30, unique=True, editable=False)
 
     artist = models.ForeignKey('Artist')
     album = models.ForeignKey('Album')
@@ -32,6 +34,10 @@ class Song(models.Model):
     def has_translation(self):
         return True if self.translated else False
     has_translation.boolean = True
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title_en)
+        super(Song, self).save(*args, **kwargs)
 
 
 class Artist(models.Model):
