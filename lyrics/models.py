@@ -29,6 +29,10 @@ class Artist(models.Model):
     name = models.CharField(max_length=200,
             help_text=('<strong>Required.</strong> Use the original name, not '
                        'a translated or romanized form.'))
+    slug = models.SlugField(max_length=30, unique=True,
+            verbose_name='Short name',
+            help_text=('<strong>Required.</strong> Short name to use for URL '
+                       'lookup. Use only alphanumeric characters.'))
 
     def __unicode__(self):
         return self.name
