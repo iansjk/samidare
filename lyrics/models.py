@@ -47,7 +47,7 @@ class Artist(models.Model):
     slug = models.SlugField(max_length=30, unique=True,
             verbose_name='Short name',
             help_text=('<strong>Required.</strong> Short name to use for URL '
-                       'lookup. Use only alphanumeric characters.'))
+                       'lookup. Use only alphanumeric characters and hyphens.'))
 
     def __unicode__(self):
         return self.name
