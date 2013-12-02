@@ -26,15 +26,20 @@ class Song(models.Model):
         return self.title_orig if self.title_orig else self.title_en
 
 class Artist(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,
+            help_text=('<strong>Required.</strong> Use the original name, not '
+                       'a translated or romanized form.'))
 
     def __unicode__(self):
         return self.name
 
 class Album(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,
+            help_text=('<strong>Required</strong>. Use the original name, '
+                       'not a translated or romanized form.'))
     artist = models.ForeignKey('Artist')
-    year = models.IntegerField(choices=YEAR_CHOICES)
+    year = models.IntegerField(choices=YEAR_CHOICES,
+            verbose_name='Year published')
 
     def __unicode__(self):
         return '(%d) %s' % (self.year, self.name)
