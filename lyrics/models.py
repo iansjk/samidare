@@ -25,6 +25,7 @@ class Song(models.Model):
     def __unicode__(self):
         return self.title_orig if self.title_orig else self.title_en
 
+
 class Artist(models.Model):
     name = models.CharField(max_length=200,
             help_text=('<strong>Required.</strong> Use the original name, not '
@@ -37,6 +38,7 @@ class Artist(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Album(models.Model):
     name = models.CharField(max_length=200,
             help_text=('<strong>Required</strong>. Use the original name, '
@@ -47,4 +49,3 @@ class Album(models.Model):
 
     def __unicode__(self):
         return u'({0}) {1}'.format(self.year, self.name)
-
