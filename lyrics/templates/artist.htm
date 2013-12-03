@@ -1,0 +1,7 @@
+<h1>Songs by {{ artist }}</h1>
+
+<ul>
+{% for song in songs %}
+    <li><a href="{% url 'lyrics:song' artist.slug song.slug %}">{{ song }}</a></li>
+{% endfor %}
+</ul>

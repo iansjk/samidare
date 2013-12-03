@@ -7,8 +7,14 @@ def index(request):
 
 def artist(request, artist_slug):
     artist = get_object_or_404(Artist, slug=artist_slug)
-    return HttpResponse('Found artist: {0}'.format(artist))
+    songs = Song.objects.filter(artist=artist)
+    context = {
+        'artist': artist,
+        'songs': songs
+    }
+    return render(request, 'artist.htm', context)
 
 def song(request, artist_slug, song_slug):
     song = get_object_or_404(Song, artist__slug=artist_slug, slug=song_slug)
-    return HttpResponse('Found song: {0}'.format(song))
+    context = {'song': song}
+    return render(request, 'song.htm', context)
