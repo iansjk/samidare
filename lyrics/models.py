@@ -7,17 +7,14 @@ for year in range(datetime.now().year, 1970, -1):
     YEAR_CHOICES.append((year, year))
 
 class Song(models.Model):
-    title_en = models.CharField(max_length=200, unique=True,
-            verbose_name='Title (English)',
+    title_en = models.CharField(max_length=200, verbose_name='Title (English)',
             help_text=('<strong>Required.</strong> The title translated '
                        'into English, or if the original title if it is '
                        'already in English.'))
     title_orig = models.CharField(max_length=200, blank=True,
             verbose_name='Title (original)',
             help_text='Optional. The original title, if applicable.')
-    slug = models.SlugField(max_length=30, unique=True, editable=False)
-    # TODO slug shouldn't really be unique on its own, only over song+artist.
-
+    slug = models.SlugField(max_length=30, editable=False)
     artist = models.ForeignKey('Artist')
     album = models.ForeignKey('Album', blank=True, null=True)
 
@@ -42,6 +39,9 @@ class Song(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title_en)
         super(Song, self).save(*args, **kwargs)
+
+    class Meta:
+        unique_together = ('artist', 'slug')
 
 
 class Artist(models.Model):
