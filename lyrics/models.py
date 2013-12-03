@@ -19,7 +19,7 @@ class Song(models.Model):
     # TODO slug shouldn't really be unique on its own, only over song+artist.
 
     artist = models.ForeignKey('Artist')
-    album = models.ForeignKey('Album')
+    album = models.ForeignKey('Album', blank=True, null=True)
 
     original = models.TextField(blank=True, verbose_name='Original lyrics')
     romanized = models.TextField(blank=True, verbose_name='Romanized lyrics')
