@@ -16,6 +16,7 @@ class Song(models.Model):
             verbose_name='Title (original)',
             help_text='Optional. The original title, if applicable.')
     slug = models.SlugField(max_length=30, unique=True, editable=False)
+    # TODO slug shouldn't really be unique on its own, only over song+artist.
 
     artist = models.ForeignKey('Artist')
     album = models.ForeignKey('Album')
