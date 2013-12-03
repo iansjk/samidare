@@ -26,7 +26,10 @@ class Song(models.Model):
     translated = models.TextField(blank=True, verbose_name='Translation')
 
     def __unicode__(self):
-        return self.title_orig if self.title_orig else self.title_en
+        if self.title_orig:
+            return u'{0} ({1})'.format(self.title_orig, self.title_en)
+        else:
+            return self.title_en
 
     def has_romanization(self):
         return True if self.romanized else False
