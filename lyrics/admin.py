@@ -18,7 +18,7 @@ class SongAdmin(admin.ModelAdmin):
         }),
     ]
     list_display = (
-        '__unicode__',  # title_orig if it exists, title_en otherwise
+        '__unicode__',
         'artist',
         'album',
         'has_romanization',
