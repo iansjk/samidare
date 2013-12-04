@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import escape
 from lyrics.models import Song, Artist, Album
 
 class SongAdmin(admin.ModelAdmin):
@@ -7,11 +8,11 @@ class SongAdmin(admin.ModelAdmin):
             'fields': ['title_en', 'title_orig', 'artist', 'album'],
         }),
         ('Lyricsheet', {
-            'description':
-                ('Enter lyricsheet information here. Full HTML is allowed. A '
-                 'single newline will be replaced with &lt;br&gt;, and two '
+            'description': escape(
+                 'Enter lyricsheet information here. Full HTML is allowed. A '
+                 'single newline will be replaced with <br>, and two '
                  'linebreaks will be interpreted as the start of a new '
-                 '&lt;p&gt; element. Leading or trailing whitespace will be '
+                 '<p> element. Leading or trailing whitespace will be '
                  'removed on each line.'),
             'fields': ['original', 'romanized', 'translated'],
         }),
