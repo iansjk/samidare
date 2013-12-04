@@ -1,10 +1,14 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from datetime import datetime
+import re
 
 YEAR_CHOICES = []
 for year in range(datetime.now().year, 1970, -1):
     YEAR_CHOICES.append((year, year))
+
+TRAILING_WHITESPACE = re.compile('[^\S\r\n]+(\r\n?|\n)',
+                                 re.UNICODE)  # important for CJK spaces
 
 class Song(models.Model):
     title_en = models.CharField(max_length=200, verbose_name='Title (English)',
@@ -38,6 +42,9 @@ class Song(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title_en)
+        self.original = re.sub(TRAILING_WHITESPACE, '\n', self.original)
+        self.romanized = re.sub(TRAILING_WHITESPACE, '\n', self.romanized)
+        self.translated = re.sub(TRAILING_WHITESPACE, '\n', self.translated)
         super(Song, self).save(*args, **kwargs)
 
     class Meta:

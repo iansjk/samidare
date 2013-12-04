@@ -12,8 +12,8 @@ class SongAdmin(admin.ModelAdmin):
                  'Enter lyricsheet information here. Full HTML is allowed. A '
                  'single newline will be replaced with <br>, and two '
                  'linebreaks will be interpreted as the start of a new '
-                 '<p> element. Leading or trailing whitespace will be '
-                 'removed on each line.'),
+                 '<p> element. Trailing whitespace (but not leading '
+                 'whitespace) will be removed on each line.'),
             'fields': ['original', 'romanized', 'translated'],
         }),
     ]
