@@ -10,9 +10,9 @@
     </tr>
     </thead>
 
-    <tbody class="lyricsheet">
+    <tbody>
     {% for stanza in stanzas %}
-    <tr class="stanza">
+    <tr>
         {% for item in stanza %}
         <td>{{ item | safe | linebreaksbr }}</td>
         {% endfor %}
