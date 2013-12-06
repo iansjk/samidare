@@ -1,15 +1,22 @@
 <h1>{{ song }}</h1>
 <h2>by <a href="{% url 'lyrics:artist' song.artist.slug %}">{{ song.artist }}</a></h2>
 
-<section>
-    <h3>Original</h3>
-    {{ song.original | safe | linebreaks }}
-</section>
-<section>
-    <h3>Romanized</h3>
-    {{ song.romanized | safe | linebreaks }}
-</section>
-<section>
-    <h3>Translated</h3>
-    {{ song.translated | safe | linebreaks }}
-</section>
+<table>
+    <thead>
+    <tr>
+        <th>Original</th>
+        {% if song.romanized %}<th>Romanized</th>{% endif %}
+        {% if song.translated %}<th>Translation</th>{% endif %}
+    </tr>
+    </thead>
+
+    <tbody class="lyricsheet">
+    {% for stanza in stanzas %}
+    <tr class="stanza">
+        {% for item in stanza %}
+        <td>{{ item | safe | linebreaksbr }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

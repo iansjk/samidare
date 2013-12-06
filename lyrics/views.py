@@ -17,5 +17,25 @@ def artist(request, artist_slug):
 
 def song(request, artist_slug, song_slug):
     song = get_object_or_404(Song, artist__slug=artist_slug, slug=song_slug)
-    context = {'song': song}
+
+    # our data is in column-major order (original is a column, romanized is a
+    # column, etc.) but we need to write the information in row-major order.
+    # rearrange the data and pass it to the context.
+    stanzas = []  # will be a list of tuples
+    original_stanzas = song.original.split('\n\n')
+    romanized_stanzas = song.romanized.split('\n\n')
+    translated_stanzas = song.translated.split('\n\n')
+    for i in range(len(original_stanzas)):
+        stanza = []
+        stanza.append(original_stanzas[i])
+        if song.romanized:
+            stanza.append(romanized_stanzas[i])
+        if song.translated:
+            stanza.append(translated_stanzas[i])
+        stanzas.append(stanza)
+
+    context = {
+        'song': song,
+        'stanzas': stanzas,
+    }
     return render(request, 'song.htm', context)
