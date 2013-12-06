@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.utils.html import escape
 from lyrics.models import Song, Artist, Album
 
 class SongAdmin(admin.ModelAdmin):
