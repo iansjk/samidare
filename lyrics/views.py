@@ -1,9 +1,10 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from lyrics.models import Song, Artist
 
 def index(request):
-    return HttpResponse('Nothing here but us trees!')
+    artists = Artist.objects.all()
+    context = {'artists': artists}
+    return render(request, 'index.htm', context)
 
 def artist(request, artist_slug):
     artist = get_object_or_404(Artist, slug=artist_slug)

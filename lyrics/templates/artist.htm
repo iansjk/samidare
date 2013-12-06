@@ -5,3 +5,5 @@
     <li><a href="{% url 'lyrics:song' artist.slug song.slug %}">{{ song }}</a></li>
 {% endfor %}
 </ul>
+
+<a href="{% url 'lyrics:index' %}">Back to Index</a>

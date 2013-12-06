@@ -1,0 +1,7 @@
+<h1>All Artists</h1>
+
+<ul>
+    {% for artist in artists %}
+    <li><a href="{% url 'lyrics:artist' artist.slug %}">{{ artist }}</a></li>
+    {% endfor %}
+</ul>
