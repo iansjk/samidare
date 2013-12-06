@@ -9,7 +9,7 @@ for year in range(datetime.now().year, 1970, -1):
     YEAR_CHOICES.append((year, year))
 
 # regex pattern used for trailing whitespace deletion / newline normalization
-TRAILING_WHITESPACE_REGEX = re.compile('[^\S\r\n]+(\r\n?|\n)',
+TRAILING_WHITESPACE_REGEX = re.compile(r'[^\S\r\n]*(\r\n?|\n)',
                                        re.UNICODE)  # important for CJK spaces
 
 class Song(models.Model):
