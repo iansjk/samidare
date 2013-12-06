@@ -21,7 +21,7 @@ def song(request, artist_slug, song_slug):
     # our data is in column-major order (original is a column, romanized is a
     # column, etc.) but we need to write the information in row-major order.
     # rearrange the data and pass it to the context.
-    stanzas = []  # will be a list of tuples
+    stanzas = []  # will be a list of lists
     original_stanzas = song.original.split('\n\n')
     romanized_stanzas = song.romanized.split('\n\n')
     translated_stanzas = song.translated.split('\n\n')
