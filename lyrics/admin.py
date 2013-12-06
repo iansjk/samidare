@@ -2,6 +2,11 @@ from django.contrib import admin
 from lyrics.models import Song, Artist, Album
 
 class SongAdmin(admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/songadmin.css',)
+        }
+
     fieldsets = [
         ('General information', {
             'fields': ['title_en', 'title_orig', 'artist', 'album'],

@@ -1,0 +1,8 @@
+.lyricsheet .form-row {
+    display: inline-block;
+    width: 30%;
+}
+
+.lyricsheet textarea {
+    width: 100% !important;
+}
