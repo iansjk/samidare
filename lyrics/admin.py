@@ -8,12 +8,13 @@ class SongAdmin(admin.ModelAdmin):
             'fields': ['title_en', 'title_orig', 'artist', 'album'],
         }),
         ('Lyricsheet', {
-            'description': escape(
-                 'Enter lyricsheet information here. Full HTML is allowed. A '
-                 'single newline will be replaced with <br>, and two '
-                 'linebreaks will be interpreted as the start of a new '
-                 '<p> element. Trailing whitespace (but not leading '
-                 'whitespace) will be removed on each line.'),
+            'classes': ('lyricsheet',),
+            'description': (
+                'Enter lyricsheet information here. Full HTML is allowed. A '
+                'single newline will be replaced with &lt;br&gt;, and two '
+                'linebreaks will be interpreted as the start of a new stanza. '
+                'Trailing whitespace (but not leading whitespace) will be '
+                'removed on each line.'),
             'fields': ['original', 'romanized', 'translated'],
         }),
     ]
