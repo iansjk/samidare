@@ -25,7 +25,7 @@ class Song(models.Model):
     album = models.ForeignKey('Album', blank=True, null=True)
 
     original = models.TextField(blank=True, verbose_name='Original lyrics')
-    romanized = models.TextField(blank=True, verbose_name='Romanized lyrics')
+    romanized = models.TextField(blank=True, verbose_name='Romanization')
     translated = models.TextField(blank=True, verbose_name='Translation')
 
     def __unicode__(self):
